@@ -1,0 +1,28 @@
+Replaced the following lines:
+
+            for node in oList.itemList:
+                if child == node and child.g > node.g:
+                    #print(child.pos, node.pos)
+                    continue
+                elif child == node and child.g <= node.g:
+                    del oList.itemList[currentIndex]
+                    currentIndex -= 1
+                    continue
+                currentIndex += 1
+				
+				
+with:
+
+            for currentIndex in range(0, oList.getLen()):
+                try:
+                    node = oList.itemList[currentIndex]
+                except IndexError:
+                    break
+                if child == node and child.g > node.g:
+                    continue
+                elif child == node and child.g <= node.g:
+                    del oList.itemList[currentIndex]
+                    currentIndex -= 1
+                    continue
+					
+Original resulted in the node that got deleted being different to the one that was selected
